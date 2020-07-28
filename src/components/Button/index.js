@@ -1,15 +1,15 @@
 import React from 'react';
 
- import { Container } from './styles';
+import { Container } from './styles';;
 
 function Button(props) {
   console.log(props)
   return (
-    <Container>
-      <a href={props.href}>
+ 
+      <Container to={props.to}>
        {props.children}
-      </a> 
-    </Container>
+      </Container> 
+
   )
 }
 

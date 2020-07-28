@@ -1,23 +1,23 @@
 import React from 'react';
-
 import Logo from '../../assets/logo.png';
-import Button from '../Button'
+import './styles.css';
+import Button from '../Button';
 
-import {Container} from './styles'
+import {Link} from 'react-router-dom'
 
-const Menu = () => {
+
+function Menu() {
   return (
-    <Container>
-      <a href="/">
-        <img src={Logo} alt="TSFLIX"/>
-      </a>
+    <nav className="Menu">
+      <Link to="/">
+        <img className="Logo" src={Logo} alt="AluraFlix logo" />
+      </Link>
 
-      <Button href={"/"}>
+      <Button to="/registration/video">
         Novo vídeo
       </Button>
-      
-    </Container>
-  )
+    </nav>
+  );
 }
 
 export default Menu;

@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import PageDefault from '../../../components/PageDefault';
 import FormField from '../../../components/FormField';
 
+import useForm from '../../../hooks/useForm';
+
 function CadastroCategoria() {
   const valoresIniciais = {
     nome: '',
@@ -10,31 +12,16 @@ function CadastroCategoria() {
     cor: '',
   };
   const [categorias, setCategorias] = useState([]);
-  const [values, setValues] = useState(valoresIniciais);
+  const { handleChange, values, clearForm } = useForm(valoresIniciais);
 
   useEffect(() => {
-    const url = 'https://tsflix.herokuapp.com/categorias';
+    const url = 'http://localhost:8080/categorias';
 
     fetch(url).then(async (response) => {
       const resposta = await response.json();
       setCategorias([...resposta]);
     });
   }, []);
-
-  function setValue(chave, valor) {
-    // chave: nome, descricao, bla, bli
-    setValues({
-      ...values,
-      [chave]: valor, // nome: 'valor'
-    });
-  }
-
-  function handleChange(infosDoEvento) {
-    setValue(
-      infosDoEvento.target.getAttribute('name'),
-      infosDoEvento.target.value,
-    );
-  }
 
   return (
     <PageDefault>
@@ -51,21 +38,21 @@ function CadastroCategoria() {
           values,
         ]);
 
-        setValues(valoresIniciais);
+        clearForm();
       }}
       >
 
         <FormField
           label="Nome da Categoria"
           type="text"
-          name="nome"
-          value={values.nome}
+          name="titulo"
+          value={values.titulo}
           onChange={handleChange}
         />
 
         <FormField
           label="Descrição:"
-          type="????"
+          type="text"
           name="descricao"
           value={values.descricao}
           onChange={handleChange}
@@ -114,9 +101,9 @@ function CadastroCategoria() {
       )}
 
       <ul>
-        {categorias.map((categoria, indice) => (
-          <li key={`${categoria}${indice}`}>
-            {categoria.nome}
+        {categorias.map((categoria) => (
+          <li key={`${categoria.titulo}`}>
+            {categoria.titulo}
           </li>
         ))}
       </ul>

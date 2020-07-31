@@ -17,13 +17,11 @@ function CadastroCategoria() {
 
     fetch(url).then(async (response) => {
       const resposta = await response.json();
-      console.log(resposta);
       setCategorias([...resposta]);
     });
   }, []);
 
   function setValue(chave, valor) {
-    console.log('Aqui');
     // chave: nome, descricao, bla, bli
     setValues({
       ...values,

@@ -1,16 +1,15 @@
 import React from 'react';
 
-import { Container } from './styles';;
+import { Container } from './styles';
 
-function Button(props) {
-  console.log(props)
+function Button({ children, ...rest }) {
   return (
- 
-      <Container to={props.to}>
-       {props.children}
-      </Container> 
 
-  )
+    <Container {...rest}>
+      {children}
+    </Container>
+
+  );
 }
 
 export default Button;

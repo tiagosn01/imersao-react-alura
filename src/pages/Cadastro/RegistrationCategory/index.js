@@ -13,7 +13,7 @@ function CadastroCategoria() {
   const [values, setValues] = useState(valoresIniciais);
 
   useEffect(() => {
-    const url = 'http://localhost:8080/categorias';
+    const url = 'https://tsflix.herokuapp.com/categorias';
 
     fetch(url).then(async (response) => {
       const resposta = await response.json();
